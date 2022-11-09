@@ -17,7 +17,19 @@ public class Projeto implements Pagamento {
 
   public Projeto(String id, String description, String startAt, String endAt, Usuario coordinator, 
   ArrayList<Usuario> members, ArrayList<Atividades> activities, double schoolarAmount, String duringAt) {
-    this.id = id;
+	  if(id == null || id.isBlank()) {
+			throw new IllegalArgumentException("ERRO! O ID NOME NAO PODE SER VAZIO!");
+		}
+		if(description == null || description.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DESCRICAO NAO PODE SER VAZIA!");
+		}
+		if(startAt == null || startAt.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DATA DE INICIO NAO PODE SER VAZIO!");
+		}
+		if(duringAt == null || duringAt.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DATA DE TERMINO NAO PODE SER VAZIA!");
+		}
+	this.id = id;
     this.description = description;
     this.startAt = startAt;
     this.endAt = endAt;
