@@ -9,7 +9,19 @@ public abstract class Usuario {
   private ArrayList<Projeto> projectsEnvolved;
   private ArrayList<Atividades> activitiesEnvolved;
 
-  public Usuario(String firstName, String lastName, String username, String password) {
+  public Usuario(String firstName, String lastName, String username, String password) throws IllegalArgumentException{
+	if(firstName == null || firstName.isBlank()) {
+		throw new IllegalArgumentException("ERRO! O PRIMEIRO NOME NAO PODE SER VAZIO!");
+	}
+	if(lastName == null || lastName.isBlank()) {
+		throw new IllegalArgumentException("ERRO! O SOBRENOME NAO PODE SER VAZIO!");
+	}
+	if(username == null || username.isBlank()) {
+		throw new IllegalArgumentException("ERRO! O NOME DE USUARIO NAO PODE SER VAZIO!");
+	}
+	if(password == null || password.isBlank()) {
+		throw new IllegalArgumentException("ERRO! A SENHA NAO PODE SER VAZIA!");
+	}
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
