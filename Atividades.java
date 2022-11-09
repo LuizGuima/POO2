@@ -11,7 +11,27 @@ public class Atividades {
   private String instructions;
 
   public Atividades(String id, String description, String startAt, String endAt, String leader, ArrayList<Usuario> members, String instructions) {
-    this.id = id;
+	  if(id == null || id.isBlank()) {
+			throw new IllegalArgumentException("ERRO! O ID NOME NAO PODE SER VAZIO!");
+		}
+		if(description == null || description.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DESCRICAO NAO PODE SER VAZIA!");
+		}
+		if(startAt == null || startAt.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DATA DE INICIO NAO PODE SER VAZIO!");
+		}
+		if(endAt == null || endAt.isBlank()) {
+			throw new IllegalArgumentException("ERRO! A DATA DE TERMINO NAO PODE SER VAZIA!");
+		}
+		if(leader == null || leader.isBlank()) {
+			throw new IllegalArgumentException(" ERROO LIDER NAO PODE SER VAZIO!");
+		}
+		if(instructions == null || instructions.isBlank()) {
+			throw new IllegalArgumentException("ERRO AS INTRUCOES NAO PODEM SER VAZIAS!");
+		}
+	  
+	  
+	this.id = id;
     this.description = description;
     this.startAt = startAt;
     this.endAt = endAt;
