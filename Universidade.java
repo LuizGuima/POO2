@@ -7,7 +7,8 @@ public class Universidade {
     Scanner input = new Scanner(System.in);
     int option = 13;
 
-    while (option != 0) {
+    
+    	while (option != 0) {
       System.out.println("\nO que deseja fazer?: ");
       System.out.println("[1] Login.");
       System.out.println("[2] Criar Conta.");
@@ -31,7 +32,7 @@ public class Universidade {
 
   public void system(Conta account, Usuario user) {
     Scanner input = new Scanner(System.in);
-    int option = 13;
+    int option = 18;
 
     while (option != 0) {
     	 System.out.println("\nEscolha o que deseja fazer: ");
@@ -122,15 +123,18 @@ public class Universidade {
     System.out.println("INSIRA O ID DO PREOJETO QUE VOCE QUER REMOVER");
     id = input.nextLine();
 
-    for (Projeto project : account.getProjects())
-      if (project.getId().equals(id)) wantedProject = project;
     
-    if (wantedProject != null) {
-      account.getProjects().remove(wantedProject);
-      System.out.println("\nPROJETO REMOVIDO COM SUCESSO!\n");
+    for (Projeto project : account.getProjects())
+        if (project.getId().equals(id)) wantedProject = project;
+      
+      if (wantedProject != null) {
+        account.getProjects().remove(wantedProject);
+        System.out.println("\nPROJETO REMOVIDO COM SUCESSO!\n");
+      }
+      else System.out.println("ESSE PROJETO NAO FOI ENCONTRADO.");
     }
-    else System.out.println("ESSE PROJETO NÃO FOI ENCONTRADO.");
-  }
+  
+  
 
   public void removerAtv(Conta account) {
     Scanner input = new Scanner(System.in);
@@ -313,7 +317,7 @@ public class Universidade {
     for (Usuario user: account.getUsers())
       if (user.getUsername().equals(username)) wantedUser = user;
     
-    if (wantedUser != null) System.out.printf("%nINFORMAÇÕES DO USUÁRIO: %s%n", wantedUser);
+    if (wantedUser != null) System.out.printf("%nINFORMACOES DO USUÁRIO: %s%n", wantedUser);
     else System.out.println("\nUSUÁRIO NAO ENCONTRADO.\n");
   }
 
@@ -330,7 +334,7 @@ public class Universidade {
       if (project.getId().equals(id)) wantedProject = project;
     
     if (wantedProject != null) System.out.println(wantedProject.getAllInfo());
-    else System.out.println("\nPROJETO NAO ENOCNTRADO.\n");
+    else System.out.println("\nPROJETO NAO ENCONTRADO.\n");
   }
 
   public void infoAtv(Conta account) {
@@ -357,10 +361,8 @@ public class Universidade {
     ArrayList<Projeto> projectsEnvolved = new ArrayList<Projeto>();
     ArrayList<Atividades> activitiesEnvolved = new ArrayList<Atividades>();
     Usuario user = null;
-
     System.out.println("\nINSIRA SEU NOME: ");
     firstName = input.nextLine();
-
     System.out.println("INSIRA SEU SOBRENOME: ");
     lastName = input.nextLine();
 
@@ -392,7 +394,14 @@ public class Universidade {
             degree = "DOUTOR";
             break;
         }
-        user = new Aluno(firstName, lastName, username, password, degree);
+      try {
+        	user = new Aluno(firstName, lastName, username, password, degree);
+        	System.out.println("\nVOCE FOI REGISTRADOR COM SUCESSO!");
+      }
+      catch(Exception e) {
+    	  System.out.println("\n"+e.getMessage());
+      }
+        
         break;
       case 2:
         System.out.println("DE QUAL MATERIA? ");
@@ -420,7 +429,12 @@ public class Universidade {
             type = "ANALISTA";
             break;
         }
+      
         user = new Profissional(firstName, lastName, username, password, type);
+        System.out.println("\nVOCE FOI REGISTRADOR COM SUCESSO!");
+        
+        
+        
         break;
     }
 
@@ -428,7 +442,7 @@ public class Universidade {
     users.add(user);
     account.setUser(users);
 
-    System.out.println("\nVOCE FOI REGISTRADOR COM SUCESSO!");
+    
   }
 
   public void editarUsuario(Conta account) {
