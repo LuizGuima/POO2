@@ -1,3 +1,6 @@
+import models.Conta;
+import models.Universidade;
+
 public class App {
 
   public static void main(String[] args) {
